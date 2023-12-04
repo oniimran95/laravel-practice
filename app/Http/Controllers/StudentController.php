@@ -48,7 +48,7 @@ class StudentController extends Controller
      */
     public function edit(Student $student)
     {
-        //
+        return view('student.edit', compact('student'));
     }
 
     /**
@@ -56,7 +56,9 @@ class StudentController extends Controller
      */
     public function update(Request $request, Student $student)
     {
-        //
+        $form_data = $request->validated();
+        Student::whereId($student->id)->update($form_data);
+        return redirect()->route('students.index');
     }
 
     /**
@@ -64,6 +66,7 @@ class StudentController extends Controller
      */
     public function destroy(Student $student)
     {
-        //
+        Student::whereId($student->id)->delete();
+        return redirect()->route('students.index');
     }
 }

@@ -27,6 +27,14 @@
                                     <th class="px-6 py-4">{{ $loop->iteration }}</th>
                                     <td class="px-6 py-4">{{ $student->name }}</td>
                                     <td class="px-6 py-4">{{ $student->email }}</td>
+                                    <td>
+                                        <a href="{{ route('students.edit', $student->id) }}">Edit</a>
+                                        <form action="{{ route('students.destroy', $student->id) }}" method="post">
+                                            @csrf
+                                            @method('delete')
+                                            <input type="submit" value="Delete" />
+                                        </form>
+                                    </td>
                                 </tr>
                                 @endforeach
                             </tbody>
